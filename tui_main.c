@@ -33,7 +33,7 @@ static void usage(void) {
 "                           If you plan to work with large files,\n"
 "                           set this to a low number.\n"
 "                           Default: 100\n"
-"    --initial-size <nxn>   When creating a new grid file, use these\n" 
+"    --initial-size <nxn>   When creating a new grid file, use these\n"
 "                           starting dimensions.\n"
 "                           Default: 57x25\n"
 "    -h or --help           Print this message and exit.\n"
@@ -2318,20 +2318,24 @@ int main(int argc, char** argv) {
     switch (key) {
     case KEY_UP:
     case CTRL_PLUS('k'):
+    case CTRL_PLUS('p'):
       ged_dir_input(&ged_state, Ged_dir_up);
       break;
-    case CTRL_PLUS('j'):
     case KEY_DOWN:
+    case CTRL_PLUS('j'):
+    case CTRL_PLUS('n'):
       ged_dir_input(&ged_state, Ged_dir_down);
       break;
     case 127: // backspace in terminal.app, apparently
     case KEY_BACKSPACE:
-    case CTRL_PLUS('h'):
     case KEY_LEFT:
+    case CTRL_PLUS('h'):
+    case CTRL_PLUS('b'):
       ged_dir_input(&ged_state, Ged_dir_left);
       break;
-    case CTRL_PLUS('l'):
     case KEY_RIGHT:
+    case CTRL_PLUS('l'):
+    case CTRL_PLUS('f'):
       ged_dir_input(&ged_state, Ged_dir_right);
       break;
     case CTRL_PLUS('z'):
@@ -2375,7 +2379,7 @@ int main(int argc, char** argv) {
     case '>':
       ged_adjust_bpm(&ged_state, 1);
       break;
-    case CTRL_PLUS('f'):
+    case CTRL_PLUS('g'):
       ged_input_cmd(&ged_state, Ged_input_cmd_step_forward);
       break;
     case CTRL_PLUS('e'):
